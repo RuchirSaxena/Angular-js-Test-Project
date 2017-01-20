@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body ng-app="myApp">
+    <div ng-controller="adminController">
+        <span ng-bind="myTestVariable" ></span>
+        {{myTestVariable}}
+        <input type="text" ng-model="myTestVariable" />
+        <div ng-show="myTestVariable">Welcome</div>
+        <input type="button" ng-click="myFunc()" value="click me" />
+
+        <input type="button" ng-click="myFunc2('Value changed')" value="click me again" />
+    </div>
+</body>
+</html>
+<script src="Scripts/angular.js"></script>
+<script src="Scripts/controllerEg.js"></script>

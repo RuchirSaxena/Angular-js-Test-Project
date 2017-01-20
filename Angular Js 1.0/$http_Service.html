@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body ng-app="myApp">
+    <div ng-controller="departmentController">
+        <input type="button" ng-click="getDepartments()"  value="Get Departments" />
+        <div>
+            {{deptData}}
+            <ul ng-repeat="dept in deptData">
+                <li>DeptID:<span ng-bind="dept.DepartmentId"></span> DeptName:<span ng-bind="dept.DepartmentName"></span> </li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
+<script src="Scripts/angular.js"></script>
+<script src="Scripts/controllerEg.js"></script>

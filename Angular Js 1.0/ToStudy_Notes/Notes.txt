@@ -1,0 +1,172 @@
+﻿Angular JS 1.0
+
+SPA=>Single Page Application
+-----------------------------
+1.We need user experince similar to desktop application
+2.We need to speed up the page loads and navigation for the user.
+3.In short we need responsive Webapps , without constant page reloads.
+
+What is ASP.NET SPA?
+1.Get necessary code ->Html,CSS,Javascipt and initial page load.
+2.Download appropriate features dynamically from server behind the scenes on response to user action,
+3.Without reloading the complete page.
+4.One of the best Examples of SPA are=>Gmail, Facebook.
+
+Page life cycle =>SPA
+--------                    -------------------
+Client  |- Initial Request->|  Server			|
+Get 	|                   |					|
+Initial	|				    |					|
+Data	|<--HTML Response--	|					|
+		|					|					|
+		|					|					|
+		|---PostBack------->|Processing on		|
+Updates	|					|Server				|
+the page|					|					|
+& Get	|<--HTML Response---|					|
+More	|					|					|
+Data	|					|					|
+--------					---------------------
+
+How to achive SPA?
+its can be achived with help of Webbrowser and Javascipt But
+it will be eaiser to implement SPA for Enterprise level application
+by using Javascript Frameworks like Angular JS,KnockOutJS,Ember Js,
+ExtJS ,React etc..
+
+Why AngularJS?
+1.We need a javascript framework that supports Single Page Application.
+2.We need simple bidirectional data binding.
+3.We need simple client side development and testing process.
+4.We need a framework that support MV*(MVC,MVVM,etc).
+5.We need a framework that keeps HTML and Javascript seperately.
+
+Directives in Angular
+In short! these are special attributes for HTML
+elements
+
+1.ng-app ->used to make part of page as angular part
+2.ng-bind ->smiliar to expressions
+3.ng-init ->For initilising variables with some values
+4.ng-show ->For visibility
+5.ng-hide ->For Visibility
+6.ng-true-value ->used for checkboxes , if checked then true
+7.ng-false-vale ->used for checkboxes , if not checked than false
+8.ng-options -> used for dropdowns
+9.ng-repeat -> similar to foreach loop
+10.ng-model ->similar to ng-bind
+11.ng-if -> similar to if
+12.ng-controller ->
+13.ng-view ->
+
+Module 
+We have various modules in our project like HR module, Admin Module etc.
+Module is kind of namespace , so in each modue you have classes , in each module
+we have controller , so we can consider controller as classes of module
+It is a collection controllers , filters, directives and many more things
+View is mapped to the module using ng-app directive
+
+Defining Module
+var app=angular.module('myApp',[]);
+Mapping
+
+<body ng-app="myApp">
+---------------------
+</body>
+
+Controller 
+In javascript a function is controller ,used to prepare data(Models) to be rendered on html pages(View).
+var app=angular.module('myApp',[]);
+app.controller('adminController',function($scope)){
+
+  ----------to do code---------
+});
+
+To map controller to view part we use ng-controller
+<div ng-controlller="adminController"></div>
+
+$scope
+$scope is an object which holds the data(Model) and is used to bind
+data between html pages(view) and controller
+
+var app=angular.module('myApp',[]);
+app.controller('adminController',function($scope)){
+
+  $scope.myValue="Hello World";
+});
+
+<input type='text' na-model='myValue'/>
+
+Controller's Methods
+
+var app = angular.module("myApp", []);
+
+app.controller("adminController", function ($scope) {
+    $scope.myTestVariable = "hello World";
+    $scope.myFunc = function () {
+        alert("Welcome to the world of angular js"+$scope.myTestVariable);
+    }
+});
+
+calling of function
+{{myFunc}}
+or
+<input type="button" ng-click="myFunc()" value="click me" />
+
+Passing arguments inside Function created inside controller
+
+var app = angular.module("myApp", []);
+
+app.controller("adminController", function ($scope) {
+    $scope.myTestVariable = "hello World";
+    $scope.myFunc = function () {
+        alert("Welcome to the world of angular js"+$scope.myTestVariable);
+    }
+    
+    $scope.myFunc2 = function (val) {
+        alert("Welcome to the world of angular js" + val);
+        $scope.myTestVariable = val;
+    }
+});
+
+calling of function
+{{myFunc}}
+or
+<input type="button" ng-click="myFunc('test')" value="click me" />
+
+Making Server calls using $http
+$http is one of the service by Angular js .It is used to make 
+ Ajax Calls to the server.
+ 
+ Making server Call
+ app.controller("departmentController", function ($scope,$http) {
+    $scope.getDepartments = function () {
+        alert("In function");
+        $http.get('/Home/GetDepartments').
+        then(function (response) {
+            $scope.deptData = response.data;
+        });
+    }
+});
+
+//displaying data
+<ul ng-repeat="dept in deptData">
+                <li>DeptID:{{dept.DepartmentId}} DeptName:{{dept.DepartmentName}}</li>
+            </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

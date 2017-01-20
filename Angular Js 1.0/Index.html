@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html >
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body ng-app ng-init="b=10;d=[10,30,34,67]">
+    {{5+3}}
+    {{a=10;a+b}}
+    <span ng-bind="a"></span>
+    <div ng-show="true" >Hello Angular</div>
+    <input type="text" ng-model="x" />
+    {{x}}
+    <ul ng-repeat="k in d">
+        <li>{{k}}</li>
+    </ul>
+    <hr />
+    <ul ng-repeat="k in d">
+        <li ng-if="k>30">{{k}}</li>
+    </ul>
+    Radio 
+    <input type="radio" ng-model="Gender" value="Male" />M
+    <input type="radio" ng-model="Gender" value="Female" />F
+    You have selected :{{Gender}}
+    <br />
+    Checkbox<br />
+    <input type="checkbox" ng-true-value="'OK'" ng-false-value="'NO'" ng-model="Chk" />I agree wih terms
+    <br />
+    <span>{{Chk}}</span><br />
+    Dropdown 1st way
+    <select ng-model="opt">
+        <option>Select</option>
+        <option ng-repeat="k in d" value="{{k}}">{{k}}</option>
+    </select><br />
+    You selected:{{opt}}<br />
+    Dropdown 2nd way
+    <select ng-model="ddl" ng-options="k for k in d"></select><br />
+    You selected:{{ddl}}<br />
+    Listbox
+    <select multiple="multiple" ng-model="list" ng-options="k for k in d"></select><br />
+    You selected:{{list}}<br />
+</body>
+</html>
+<script src="Scripts/angular.min.js"></script>
