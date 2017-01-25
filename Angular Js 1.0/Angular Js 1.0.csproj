@@ -170,22 +170,25 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Department.cs">
-      <DependentUpon>Employee.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Employee.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Employee.Context.tt</DependentUpon>
+      <DependentUpon>EmployeeDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Employee.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Employee.tt</DependentUpon>
+      <DependentUpon>EmployeeDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Employee.Designer.cs">
+    <Compile Include="EmployeeDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Employee.edmx</DependentUpon>
+      <DependentUpon>EmployeeDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,23 +198,31 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="%24http_Service.html" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="ControllerPage.html" />
-    <Content Include="Employee.Context.tt">
+    <Content Include="EmployeeDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Employee.edmx</DependentUpon>
-      <LastGenOutput>Employee.Context.cs</LastGenOutput>
+      <DependentUpon>EmployeeDB.edmx</DependentUpon>
+      <LastGenOutput>EmployeeDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Employee.tt">
+    <Content Include="EmployeeDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Employee.edmx</DependentUpon>
-      <LastGenOutput>Employee.cs</LastGenOutput>
+      <DependentUpon>EmployeeDB.edmx</DependentUpon>
+      <LastGenOutput>EmployeeDB.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="GridView.html" />
     <Content Include="Index.html" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\controllerEg.js" />
     <Content Include="ToStudy_Notes\Notes.txt" />
     <Content Include="Web.config" />
@@ -227,18 +238,24 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\" />
-    <Folder Include="fonts\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <EntityDeploy Include="Employee.edmx">
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <EntityDeploy Include="EmployeeDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Employee.Designer.cs</LastGenOutput>
+      <LastGenOutput>EmployeeDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Employee.edmx.diagram">
-      <DependentUpon>Employee.edmx</DependentUpon>
+    <Content Include="EmployeeDB.edmx.diagram">
+      <DependentUpon>EmployeeDB.edmx</DependentUpon>
     </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\angular.min.js.map" />

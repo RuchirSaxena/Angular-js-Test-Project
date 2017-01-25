@@ -13,11 +13,12 @@ namespace Angular_Js_1._0
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EmployeeDB : DbContext
+    public partial class EmployeedatabaseEntities : DbContext
     {
-        public EmployeeDB()
-            : base("name=EmployeeDB")
+        public EmployeedatabaseEntities()
+            : base("name=EmployeedatabaseEntities")
         {
+            Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -26,5 +27,6 @@ namespace Angular_Js_1._0
         }
     
         public virtual DbSet<Department> Departments { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
     }
 }

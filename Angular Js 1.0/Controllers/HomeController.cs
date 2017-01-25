@@ -11,9 +11,21 @@ namespace Angular_Js_1._0.Controllers
         // GET: GetDepartments
         public ActionResult GetDepartments()
         {
-            EmployeeDB objEmp = new EmployeeDB();
+            EmployeedatabaseEntities objEmp = new EmployeedatabaseEntities();
             var depts = objEmp.Departments.ToList();
             return Json(depts,JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetEmployees()
+        {
+            EmployeedatabaseEntities objEmp = new EmployeedatabaseEntities();
+            var Emps = objEmp.Employees.ToList();
+            return Json(Emps, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetEmployeeByDeptId(int id)
+        {
+            EmployeedatabaseEntities objEmp = new EmployeedatabaseEntities();
+            var Emps = objEmp.Employees.Where(emp => emp.Department_DepartmentId == id).ToList();
+            return Json(Emps, JsonRequestBehavior.AllowGet);
         }
     }
 }

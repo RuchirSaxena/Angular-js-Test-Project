@@ -9,13 +9,52 @@
         <input type="button" ng-click="getDepartments()"  value="Get Departments" />
         <div>
             {{deptData}}
+            List Binding from Server
             <ul ng-repeat="dept in deptData">
                 <li>DeptID:<span ng-bind="dept.DepartmentId"></span> DeptName:<span ng-bind="dept.DepartmentName"></span> </li>
             </ul>
+            <div ng-controller="employeeController">
+                DropDown Binding from Server
+                <select ng-model="d" ng-change="getEmployees(d)"
+                         ng-options="dept.DepartmentId as dept.DepartmentName for dept in deptData"></select><br />
+                Selected Value of dropdown :{{d}}<br />
+                CasCading DropDown List
+                <select ng-model="e" ng-options="emp.EmployeeId as emp.EmployeeName for emp in EmpData"></select><br />
+                <hr />
+                <table class="table-striped" width="100%">
+                    <tr>
+                        <td>Eid</td>
+                        <td>EName</td>
+                        <td>ESalary</td>
+                        <tr ng-repeat="emp in EmpData">
+                            <td>{{emp.EmployeeId}}</td>
+                            <td>{{emp.EmployeeName}}</td>
+                            <td>{{emp.EmployeeSalary}}</td>
+                    </tr>
+                </table>
+            </div>
+
+
+            
+            Table binding from Server
+            <table class="table-striped" width="100%">
+                <tr>
+                    <td>Department ID</td>
+                    <td>Department Name</td>
+                  
+                </tr>
+                <tr ng-repeat="dept in deptData">
+                    <td><span ng-bind="dept.DepartmentId"></span></td>
+                    <td><span ng-bind="dept.DepartmentName"></span></td>
+                </tr>
+            </table><br />
+
         </div>
     </div>
    
 </body>
 </html>
+<link href="Content/bootstrap.css" rel="stylesheet" />
 <script src="Scripts/angular.js"></script>
 <script src="Scripts/controllerEg.js"></script>
+<script src="Scripts/bootstrap.min.js"></script>

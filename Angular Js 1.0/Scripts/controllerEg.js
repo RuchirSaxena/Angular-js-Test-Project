@@ -24,4 +24,13 @@ app.controller("departmentController", function ($scope,$http) {
     }
 });
 
+app.controller("employeeController", function ($scope,$http) {
+    $scope.getEmployees = function (dId) {
+        $http.get('/Home/GetEmployeeByDeptId/'+dId).
+            then(function (response) {
+                $scope.EmpData = response.data;
+            });
+    }
+});
+
 

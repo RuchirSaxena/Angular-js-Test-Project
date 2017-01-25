@@ -150,10 +150,83 @@ $http is one of the service by Angular js .It is used to make
 });
 
 //displaying data
-<ul ng-repeat="dept in deptData">
-                <li>DeptID:{{dept.DepartmentId}} DeptName:{{dept.DepartmentName}}</li>
+//1.  List Binding from Server
+            <ul ng-repeat="dept in deptData">
+                <li>DeptID:<span ng-bind="dept.DepartmentId"></span> DeptName:<span ng-bind="dept.DepartmentName"></span> </li>
             </ul>
+//2.            DropDown Binding from Server
+            <select ng-model="d" ng-options="dept.DepartmentId as dept.DepartmentName for dept in deptData"></select><br />
+            Selected Value of dropdown :{{d}}<br />
 
+ // 3.          Table binding from Server
+            <table>
+                <tr>
+                    <td>Department ID</td>
+                    <td>Department Name</td>
+                  
+                </tr>
+                <tr ng-repeat="dept in deptData">
+                    <td><span ng-bind="dept.DepartmentId"></span></td>
+                    <td><span ng-bind="dept.DepartmentName"></span></td>
+                </tr>
+            </table><br />
+
+4.Cascading DropDownlist  and Gridview from server
+//In Js
+app.controller("employeeController", function ($scope,$http) {
+    $scope.getEmployees = function (dId) {
+        $http.get('/Home/GetEmployeeByDeptId/'+dId).
+            then(function (response) {
+                $scope.EmpData = response.data;
+            });
+    }
+});
+
+//In HTML
+
+ <div ng-controller="departmentController">
+ <div ng-controller="employeeController">
+                1st  DropDown Binding from Server
+                <select ng-model="d" ng-change="getEmployees(d)"
+                         ng-options="dept.DepartmentId as dept.DepartmentName for dept in deptData"></select><br />
+                Selected Value of dropdown :{{d}}<br />
+                CasCading 2nd DropDown List
+                <select ng-model="e" ng-options="emp.EmployeeId as emp.EmployeeName for emp in EmpData"></select><br />
+                <hr />
+				Grid Binding
+                <table class="table-striped" width="100%">
+                    <tr>
+                        <td>Eid</td>
+                        <td>EName</td>
+                        <td>ESalary</td>
+                        <tr ng-repeat="emp in EmpData">
+                            <td>{{emp.EmployeeId}}</td>
+                            <td>{{emp.EmployeeName}}</td>
+                            <td>{{emp.EmployeeSalary}}</td>
+                    </tr>
+                </table>
+	</div>
+	</div>
+
+	//Server
+	 public ActionResult GetDepartments()
+        {
+            EmployeedatabaseEntities objEmp = new EmployeedatabaseEntities();
+            var depts = objEmp.Departments.ToList();
+            return Json(depts,JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetEmployees()
+        {
+            EmployeedatabaseEntities objEmp = new EmployeedatabaseEntities();
+            var Emps = objEmp.Employees.ToList();
+            return Json(Emps, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetEmployeeByDeptId(int id)
+        {
+            EmployeedatabaseEntities objEmp = new EmployeedatabaseEntities();
+            var Emps = objEmp.Employees.Where(emp => emp.Department_DepartmentId == id).ToList();
+            return Json(Emps, JsonRequestBehavior.AllowGet);
+        }
 
 
 

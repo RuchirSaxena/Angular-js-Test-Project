@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body ng-app="myApp">
+    <div ng-controller="departmentController">
+        <input type="button" ng-click="getDepartments()" value="Get Departments" />
+        <div>
+           <div ng-controller="employeeController">
+               Select Department:
+                <select ng-model="d" ng-change="getEmployees(d)"
+                        ng-options="dept.DepartmentId as dept.DepartmentName for dept in deptData"></select><br />
+                Selected Value of dropdown :{{d}}<br />
+               Select Employee:
+                <select ng-model="e" ng-options="emp.EmployeeId as emp.EmployeeName for emp in EmpData"></select><br />
+                <hr />
+                <table class="table-hover" width="100%">
+                    <tr>
+                        <td>Eid</td>
+                        <td>EName</td>
+                        <td>ESalary</td>
+                        <td>EGender</td>
+                        <td>EDepartment</td>
+                    <tr ng-repeat="emp in EmpData">
+                        <td>{{emp.EmployeeId}}</td>
+                        <td>{{emp.EmployeeName}}</td>
+                        <td>{{emp.EmployeeSalary}}</td>
+                        <td>
+                            <input type="radio" ng-model="emp.Gender" value="M" />Male
+                            <input type="radio" ng-model="emp.Gender" value="F" />FeMale
+
+                        </td>
+                        <td>
+                            <select ng-model="emp.Department_DepartmentId" 
+                                    ng-options="dept.DepartmentId as dept.DepartmentName for dept in deptData"></select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<link href="Content/bootstrap.css" rel="stylesheet" />
+<script src="Scripts/angular.js"></script>
+<script src="Scripts/controllerEg.js"></script>
+<script src="Scripts/bootstrap.min.js"></script>
