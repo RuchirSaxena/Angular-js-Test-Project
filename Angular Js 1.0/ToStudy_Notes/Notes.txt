@@ -76,6 +76,13 @@ Mapping
 
 Controller 
 In javascript a function is controller ,used to prepare data(Models) to be rendered on html pages(View).
+Job of the controller is to bind model data to views using $scope.
+It should not contain logic for curd operation.
+I need a seperate user defined object which should perform CURD operations
+and use it in the controller
+
+
+//controller creation code
 var app=angular.module('myApp',[]);
 app.controller('adminController',function($scope)){
 
@@ -227,6 +234,122 @@ app.controller("employeeController", function ($scope,$http) {
             var Emps = objEmp.Employees.Where(emp => emp.Department_DepartmentId == id).ToList();
             return Json(Emps, JsonRequestBehavior.AllowGet);
         }
+
+Filters
+Filters are the special functions to format or transfrom the data using pipe 
+character in an expression followed by a filter.{{model | filter}}
+
+1.lowercase Format a string to lowercase.
+2.uppercase Format a string to uppercase.
+3.currency Format a number to a currency format.
+4.number Format a number to string.
+5.date Format a date to a specified format.
+6.json Format an object to a Json string.
+7.Serching filter ->filter Select a subset of items from an array.
+8.orderBy Orders an array by an expression -Sorting
+9.Third party dirPaginate.js - Pagination
+
+Serching and Sorting 
+//html
+ <div ng-controller="employeeController">
+ Search: <input type="text" ng-model="search" value="" />
+                <table class="table-hover" width="100%">
+                    <tr>
+                        <td style="cursor:pointer;" ng-click="sort('EmployeeId')">Eid</td>
+                        <td style="cursor:pointer;"ng-click="sort('EmployeeName')">EName</td>
+                        <td style="cursor:pointer;"ng-click="sort('EmployeeSalary')">ESalary</td>
+                        <td style="cursor:pointer;"ng-click="sort('Gender')">EGender</td>
+                        <td style="cursor:pointer;"ng-click="sort('Department_DepartmentId')">EDepartment</td>
+                    <tr ng-repeat="emp in EmpData | filter:search | orderBy:sortColumnKey:ascOrDesc">
+                        <td>{{emp.EmployeeId}}</td>
+                        <td>{{emp.EmployeeName | uppercase}}</td>
+                        <td>{{emp.EmployeeSalary}}</td>
+                        <td>
+                            <input type="radio" ng-model="emp.Gender" value="M" />Male
+                            <input type="radio" ng-model="emp.Gender" value="F" />FeMale
+
+                        </td>
+                        <td>
+                            <select ng-model="emp.Department_DepartmentId" 
+                                    ng-options="dept.DepartmentId as dept.DepartmentName for dept in deptData"></select>
+                        </td>
+                    </tr>
+                </table>
+				</div>
+
+
+//in js
+app.controller("employeeController", function ($scope,$http) {
+   
+   //for sorting
+    $scope.sort = function (colName) {
+        $scope.sortColumnKey = colName;
+        $scope.ascOrDesc = !$scope.ascOrDesc;
+    }
+});
+
+Paging using dirPagination.js Plug-inn
+
+In Html
+<table class="table-hover" width="100%">
+                    <tr>
+                        <td style="cursor:pointer;" ng-click="sort('EmployeeId')">Eid</td>
+                        <td style="cursor:pointer;"ng-click="sort('EmployeeName')">EName</td>
+                        <td style="cursor:pointer;"ng-click="sort('EmployeeSalary')">ESalary</td>
+                        <td style="cursor:pointer;"ng-click="sort('Gender')">EGender</td>
+                        <td style="cursor:pointer;"ng-click="sort('Department_DepartmentId')">EDepartment</td>
+                   <!-- <tr ng-repeat="emp in EmpData | filter:search | orderBy:sortColumnKey:ascOrDesc">-->
+                    <tr dir-paginate="emp in EmpData | filter:search | orderBy:sortColumnKey:ascOrDesc |itemsPerPage:3">
+                        <td>{{emp.EmployeeId}}</td>
+                        <td>{{emp.EmployeeName | uppercase}}</td>
+                        <td>{{emp.EmployeeSalary}}</td>
+                        <td>
+                            <input type="radio" ng-model="emp.Gender" value="M" />Male
+                            <input type="radio" ng-model="emp.Gender" value="F" />FeMale
+
+                        </td>
+                        <td>
+                            <select ng-model="emp.Department_DepartmentId"
+                                    ng-options="dept.DepartmentId as dept.DepartmentName for dept in deptData"></select>
+                        </td>
+                    </tr>
+                </table>
+               <dir-pagination-controls max-size="3"
+                                        direction-links="true"
+                                        boundary-links="true">
+               </dir-pagination-controls>
+
+//In JS
+//adding the dependency for the pluginn
+var app = angular.module("myApp", ['angularUtils.directives.dirPagination']);
+
+Services
+Service is an object which contains some functions which perform some
+operations.
+Eg:$http is a predefined service object.
+We can write user defined service objects to perform CURD operations.
+Invoke these services from any controllers.
+Sevices can be created using 
+	1.Service Method 
+	2.Factory Method
+
+//js
+app.service('MyService',function(){
+
+	this.func1=function(){
+	   -------------
+	};
+});
+
+
+
+
+
+
+
+
+
+
 
 
 

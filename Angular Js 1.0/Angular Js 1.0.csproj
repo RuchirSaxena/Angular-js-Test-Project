@@ -197,12 +197,12 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="%24http_Service.html" />
+    <Content Include="Views\%24http_Service.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="ControllerPage.html" />
+    <Content Include="Views\ControllerPage.html" />
     <Content Include="EmployeeDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>EmployeeDB.edmx</DependentUpon>
@@ -224,7 +224,9 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\controllerEg.js" />
+    <Content Include="Scripts\dirPagination.js" />
     <Content Include="ToStudy_Notes\Notes.txt" />
+    <Content Include="Views\Services.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -233,12 +235,10 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

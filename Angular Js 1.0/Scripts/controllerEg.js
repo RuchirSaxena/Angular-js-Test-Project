@@ -1,6 +1,6 @@
 ﻿/// <reference path="angular.js" />
 
-var app = angular.module("myApp", []);
+var app = angular.module("myApp", ['angularUtils.directives.dirPagination']);
 
 app.controller("adminController", function ($scope) {
     $scope.myTestVariable = "hello World";
@@ -16,7 +16,7 @@ app.controller("adminController", function ($scope) {
 
 app.controller("departmentController", function ($scope,$http) {
     $scope.getDepartments = function () {
-        alert("In function");
+        //alert("In function");
         $http.get('/Home/GetDepartments').
         then(function (response) {
             $scope.deptData = response.data;
@@ -31,6 +31,12 @@ app.controller("employeeController", function ($scope,$http) {
                 $scope.EmpData = response.data;
             });
     }
+
+    $scope.sort = function (colName) {
+        $scope.sortColumnKey = colName;
+        $scope.ascOrDesc = !$scope.ascOrDesc;
+    }
 });
+
 
 
