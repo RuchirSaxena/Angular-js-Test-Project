@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body ng-app="MyApp">
+    <div ng-controller="MathController">
+        <input type="text" placeholder="Enter Value1" ng-model="no1" /><br />
+        <input type="text" placeholder="Enter Value2" ng-model="no2" /><br />
+        <input type="button" value="ADD" ng-click="add(no1,no2)" />
+        <input type="button" value="SUBTRACT" ng-click="sub(no1,no2)" />
+        <span ng-bind="result"></span>
+
+        Provider Example
+        <span ng-bind="currentDate"></span>
+    </div>
+</body>
+</html>
+<link href="Content/bootstrap.css" rel="stylesheet" />
+<script src="Scripts/angular.js"></script>
+<script src="Scripts/controllerEg.js"></script>
+<script src="Scripts/bootstrap.min.js"></script>
+<script src="../Scripts/Services.js"></script>

@@ -197,12 +197,13 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\%24http_Service.html" />
+    <Content Include="Scripts\Services.js" />
+    <Content Include="%24http_Service.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Views\ControllerPage.html" />
+    <Content Include="ControllerPage.html" />
     <Content Include="EmployeeDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>EmployeeDB.edmx</DependentUpon>
@@ -226,7 +227,7 @@
     <Content Include="Scripts\controllerEg.js" />
     <Content Include="Scripts\dirPagination.js" />
     <Content Include="ToStudy_Notes\Notes.txt" />
-    <Content Include="Views\Services.html" />
+    <Content Include="Services.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

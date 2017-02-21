@@ -325,21 +325,108 @@ var app = angular.module("myApp", ['angularUtils.directives.dirPagination']);
 
 Services
 Service is an object which contains some functions which perform some
-operations.
+operations.Services are singleton means only one instance of service exsits
 Eg:$http is a predefined service object.
 We can write user defined service objects to perform CURD operations.
 Invoke these services from any controllers.
 Sevices can be created using 
 	1.Service Method 
 	2.Factory Method
+	3.Providers
 
-//js
+//js Service Method 
 app.service('MyService',function(){
 
 	this.func1=function(){
 	   -------------
 	};
 });
+
+//Example
+var app = angular.module("MyApp", []);
+
+app.service("$calculateService", function () {
+    this.add = function (value1, value2) {
+        return parseInt(value1) + parseInt(value2);
+    };
+    this.subtract = function (value1, value2) {
+        return value1 - value2
+    };
+
+});
+//Consuming Service
+app.controller('MathController', function ($scope, $calculateService) {
+    $scope.add = function (a, b) {
+        $scope.result = $calculateService.add(a, b);
+       // alert($scope.result);
+    };
+
+});
+
+//Creating Service using Factory Method
+app.factory("$calculateServiceUsingFactoryMethod", function () {
+    var fact = {};
+    fact.add = function (value1, value2) {
+        return parseInt(value1) + parseInt(value2);
+    };
+    fact.subtract = function (value1, value2) {
+        return value1 - value2
+    };
+    return fact;
+
+});
+
+//Creating Provider
+app.provider("date", function () {
+    var greet;
+    return {
+	//this below method will only be acessable in config  and not in controller
+	//coz it is not under $get 
+        setGreetMessage:function(greetValue){
+            greet = greetValue;
+            console.log(greet);
+        },
+        $get: function () {
+            return {
+                showDate: function () {
+                    var date = new Date();
+                    return "Hi "+greet+" time is"+  date.getHours();
+                }
+            }
+        }
+    }
+});
+
+//Consuming service and provider
+app.controller('MathController', function ($scope, $calculateServiceUsingServiceMethod, $calculateServiceUsingFactoryMethod,date) {
+    $scope.add = function (a, b) {
+        $scope.result = $calculateServiceUsingServiceMethod.add(a, b);
+       // alert($scope.result);
+    };
+
+    $scope.sub = function (a, b) {
+        $scope.result = $calculateServiceUsingFactoryMethod.subtract(a, b);
+        // alert($scope.result);
+    };
+
+    $scope.currentDate = date.showDate();
+
+});
+
+//acessing provider method in app.config
+//here date which is a provider will be acessible as dateProvider(Provider is a suffix)
+app.config(function (dateProvider) {
+    var time=dateProvider.$get().showDate();
+    if (time > 0 && time < 12) {
+        dateProvider.setGreetMessage("Good morning");
+    } else {
+        dateProvider.setGreetMessage("Good night");
+    }
+});
+
+
+
+Implementing CURD operation using Factory Service Method
 
 
 
