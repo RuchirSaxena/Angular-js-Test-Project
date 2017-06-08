@@ -16,9 +16,10 @@ namespace Angular_Js_1._0
     {
         public int EmployeeId { get; set; }
         public string EmployeeName { get; set; }
-        public int EmployeeSalary { get; set; }
+        public Nullable<int> EmployeeSalary { get; set; }
         public int Department_DepartmentId { get; set; }
         public string Gender { get; set; }
+        public Nullable<System.DateTime> DOB { get; set; }
     
         public virtual Department Department { get; set; }
     }

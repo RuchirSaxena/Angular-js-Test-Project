@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head >
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body ng-app="myApp">
+<div ng-controller="employeesController">
+    <table class="table table-striped">
+        <tr>
+            <td>EmpId</td>
+            <td>EmpName</td>
+            <td>EmpSalary</td>
+            <td>DOB</td>
+           
+        </tr>
+        <tr ng-repeat="emp in empData">
+            <td><a style="cursor: pointer;" ng-click="getById(emp.EmployeeId)">{{emp.EmployeeId}}</a></td>
+            <td><a>{{emp.EmployeeName}}</a></td>
+            <td><a>{{emp.EmployeeSalary}}</a></td>
+            <td><a><span ng-bind="emp.DOB.replace('/Date(','').replace(')/','')|date:'MM/dd/yyyy'"></span></a></td>
+            <td><a href="#">Delete</a></td>
+        </tr>
+       
+    </table>
+    
+    <table class="table table-bordered">
+        <tr>
+            <td>Employee ID:</td>
+            <td><input type="text" value="" ng-model="emp.EmployeeId"/></td>
+        </tr>
+        <tr>
+            <td>Employee Name:</td>
+            <td><input type="text" value="" ng-model="emp.EmployeeName" /></td>
+        </tr>
+        <tr>
+            <td>Employee Salary:</td>
+            <td><input type="text" value="" ng-model="emp.EmployeeSalary" /></td>
+        </tr>
+        <tr>
+            <td>DOB:</td>
+            <td><input type="text" value="" ng-model="emp.DOB.replace('/Date(','').replace(')/','')|date:'MM/dd/yyyy'"/></td>
+        </tr>
+
+        <tr>
+            <td><input type="button" value="Create" class="btn-success" /></td>
+            <td><input type="button" value="Update" class="btn-success"/></td>
+        </tr>
+    </table>
+    
+</div>
+
+</body>
+</html>
+<script src="Scripts/angular.js"></script>
+<script src="Scripts/curdOperations.js"></script>
+<link href="Content/bootstrap.min.css" rel="stylesheet" />
+<script src="Scripts/bootstrap.min.js"></script>

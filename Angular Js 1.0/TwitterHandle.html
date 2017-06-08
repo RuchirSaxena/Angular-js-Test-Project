@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Twitter Handle</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <header>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/">Angular Js</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a  href="#/"><i class="fa fa-home"></i>Home</a></li>
+            <li><a href="#/contactus"><i class="fa fa-home"></i>Contact Us</a></li>
+        </ul>
+    </header>
+    <div class="container">
+        
+        <div ng-controller="mainCtrl">
+            <div>
+                <label>Whats your twitter handle?</label>
+                <input  type="text" ng-model="handle"/>
+
+            </div>
+            <div class="alert" ng-class="{'alert-warning':handle.length<characters,'alert-danger':handle.length>characters}">
+                <div ng-show="handle.length<characters">
+                    You have less than 5 character !
+                </div>
+                <div ng-show="handle.length>characters">
+                    You have more than 5 character !
+                </div>
+            </div>
+            <hr />
+            <!--ng-cloak ->Used to check if the {{}} have the require data binded
+                or not and the digest cycle has run properly or-->
+            <h1 ng-cloak>twitter.com/{{lowerCaseHandle()}}</h1>
+
+            <div class="bg-primary">Rules:</div>
+            <ol>
+                <li ng-repeat="rule in rules">
+                    {{rule.Rule}}
+                </li>
+            </ol>
+        </div>
+        <div ng-view>
+            
+        </div>
+    </div>
+</body>
+</html>
+<script src="Scripts/angular.js"></script>
+<link href="Content/bootstrap.min.css" rel="stylesheet" />
+<script src="//code.angularjs.org/1.5.9/angular-route.min.js"></script>
+<script src="Scripts/bootstrap.min.js"></script>
+<script src="Scripts/twitterCtrl.js"></script>

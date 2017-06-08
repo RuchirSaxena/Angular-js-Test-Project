@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body ng-app="myapp">
+<div ng-controller="StoreController as storeCtrl">
+    <ul>
+        <li class="list-group-item" ng-repeat="product in storeCtrl.products">
+            <div>{{product.name}}</div>
+            <div>{{product.price | currency}}</div>
+            <div>{{product.description}}</div>
+            <h4>Reviews</h4>
+            <blockquote ng-repeat="review in product.reviews">
+                <b>Stars:{{review.stars}}</b>
+                {{review.body}}
+                <cite>by:{{review.author}}</cite>
+            </blockquote>
+            <from name="reviewFrom" ng-controller="ReviewController as reviewCtrl"
+               ng-submit="reviewCtrl.addReview(product)"   novalidate >
+                <blockquote>
+                    <b>Stars:{{reviewCtrl.review.stars}}</b>
+                    {{reviewCtrl.review.body}}
+                    <cite>by:{{reviewCtrl.review.author}}</cite>
+                </blockquote>
+                <select class="form-control" ng-model="reviewCtrl.review.stars" required="">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <textarea class="form-control" ng-model="reviewCtrl.review.body" required=""></textarea>
+                <label>by:</label>
+                <input class="form-control" type="email" ng-model="reviewCtrl.review.author" required=""/>
+                <div> review from is {{reviewFrom.$valid}}</div>
+                <input type="submit" class="btn-info" value="Submit"/>
+            </from>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
+<script src="Scripts/angular.js"></script>
+<link href="Content/bootstrap.min.css" rel="stylesheet" />
+<script src="Scripts/StroreControllerFrom.js"></script>
+<script src="Scripts/bootstrap.min.js"></script>

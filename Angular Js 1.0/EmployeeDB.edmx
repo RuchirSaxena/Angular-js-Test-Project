@@ -18,8 +18,9 @@
           </Key>
           <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeName" Type="nvarchar(max)" />
-          <Property Name="EmployeeSalary" Type="int" Nullable="false" />
+          <Property Name="EmployeeSalary" Type="int" />
           <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="datetime" />
           <Property Name="Department_DepartmentId" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_Employees_dbo_Departments_Department_DepartmentId">
@@ -60,10 +61,11 @@
           </Key>
           <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmployeeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="EmployeeSalary" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeSalary" Type="Int32" />
           <Property Name="Department_DepartmentId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Department" Relationship="Self.FK_dbo_Employees_dbo_Departments_Department_DepartmentId" FromRole="Employees" ToRole="Departments" />
           <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_dbo_Employees_dbo_Departments_Department_DepartmentId">
           <End Role="Departments" Type="Self.Department" Multiplicity="1" />
@@ -102,6 +104,7 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="EmployeedatabaseModel.Employee">
               <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />

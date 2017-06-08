@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -27,5 +28,24 @@ namespace Angular_Js_1._0.Controllers
             var Emps = objEmp.Employees.Where(emp => emp.Department_DepartmentId == id).ToList();
             return Json(Emps, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetRules()
+        {
+            List<Rules> ruleList = new List<Rules>();
+          
+            ruleList.Add(new Rules() { RuleName="rule", Rule="It must be 5 characters long" });
+            ruleList.Add(new Rules() { RuleName = "rule", Rule = "It must be Unique" });
+            ruleList.Add(new Rules() { RuleName = "rule", Rule = "It must be impressive" });
+           
+            return Json(ruleList, JsonRequestBehavior.AllowGet);
+        }
+
+        class Rules
+        {
+            public string RuleName { get; set; }
+            public string Rule { get; set; }
+        }
+
+
     }
 }

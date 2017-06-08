@@ -5,48 +5,49 @@
     <meta charset="utf-8" />
 </head>
 <body ng-app="myApp">
-    <div ng-controller="departmentController">
-        <input type="button" ng-click="getDepartments()" value="Get Departments" />
-        <div>
-            <div ng-controller="employeeController">
-                Select Department:
-                <select ng-model="d" ng-change="getEmployees(d)"
-                        ng-options="dept.DepartmentId as dept.DepartmentName for dept in deptData"></select><br />
-                Selected Value of dropdown :{{d}}<br />
-                Select Employee:
-                <select ng-model="e" ng-options="emp.EmployeeId as emp.EmployeeName for emp in EmpData"></select><br />
-                <hr />
-                Search: <input type="text" ng-model="search" value="" />
-                <table class="table-hover" width="100%">
-                    <tr>
-                        <td style="cursor:pointer;" ng-click="sort('EmployeeId')">Eid</td>
-                        <td style="cursor:pointer;" ng-click="sort('EmployeeName')">EName</td>
-                        <td style="cursor:pointer;" ng-click="sort('EmployeeSalary')">ESalary</td>
-                        <td style="cursor:pointer;" ng-click="sort('Gender')">EGender</td>
-                        <td style="cursor:pointer;" ng-click="sort('Department_DepartmentId')">EDepartment</td>
-                        <!-- <tr ng-repeat="emp in EmpData | filter:search | orderBy:sortColumnKey:ascOrDesc">-->
-                    <tr dir-paginate="emp in EmpData | filter:search | orderBy:sortColumnKey:ascOrDesc |itemsPerPage:3">
-                        <td>{{emp.EmployeeId}}</td>
-                        <td>{{emp.EmployeeName | uppercase}}</td>
-                        <td>{{emp.EmployeeSalary}}</td>
-                        <td>
-                            <input type="radio" ng-model="emp.Gender" value="M" />Male
-                            <input type="radio" ng-model="emp.Gender" value="F" />FeMale
 
-                        </td>
-                        <td>
-                            <select ng-model="emp.Department_DepartmentId"
-                                    ng-options="dept.DepartmentId as dept.DepartmentName for dept in deptData"></select>
-                        </td>
-                    </tr>
-                </table>
-                <dir-pagination-controls max-size="3"
-                                         direction-links="true"
-                                         boundary-links="true">
-                </dir-pagination-controls>
-            </div>
+<div ng-controller="departmentController">
+    <input type="button" ng-click="getDepartments()"  value="Get Departments"/>
+    <div>
+        <div ng-controller="employeeController">
+            Select Department:
+            <select ng-model="d" ng-change="getEmployees(d)"
+                    ng-options="dept.DepartmentId as dept.DepartmentName for dept in deptData"></select><br/>
+            Selected Value of dropdown :{{d}}<br/>
+            Select Employee:
+            <select ng-model="e" ng-options="emp.EmployeeId as emp.EmployeeName for emp in EmpData"></select><br/>
+            <hr/>
+            Search: <input type="text" ng-model="search" value=""/>
+            <table class="table-hover" width="100%">
+                <tr>
+                <td style="cursor: pointer;" ng-click="sort('EmployeeId')">Eid</td>
+                <td style="cursor: pointer;" ng-click="sort('EmployeeName')">EName</td>
+                <td style="cursor: pointer;" ng-click="sort('EmployeeSalary')">ESalary</td>
+                <td style="cursor: pointer;" ng-click="sort('Gender')">EGender</td>
+                <td style="cursor: pointer;" ng-click="sort('Department_DepartmentId')">EDepartment</td>
+                <!-- <tr ng-repeat="emp in EmpData | filter:search | orderBy:sortColumnKey:ascOrDesc">-->
+                <tr dir-paginate="emp in EmpData | filter:search | orderBy:sortColumnKey:ascOrDesc |itemsPerPage:3">
+                    <td>{{emp.EmployeeId}}</td>
+                    <td>{{emp.EmployeeName | uppercase}}</td>
+                    <td>{{emp.EmployeeSalary}}</td>
+                    <td>
+                        <input type="radio" ng-model="emp.Gender" value="M"/>Male
+                        <input type="radio" ng-model="emp.Gender" value="F"/>FeMale
+
+                    </td>
+                    <td>
+                        <select ng-model="emp.Department_DepartmentId"
+                                ng-options="dept.DepartmentId as dept.DepartmentName for dept in deptData"></select>
+                    </td>
+                </tr>
+            </table>
+            <dir-pagination-controls max-size="3"
+                                     direction-links="true"
+                                     boundary-links="true">
+            </dir-pagination-controls>
         </div>
     </div>
+</div>
 
 </body>
 </html>
