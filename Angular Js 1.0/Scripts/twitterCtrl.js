@@ -20,7 +20,8 @@ myApp.controller('mainCtrl', ['$scope', '$filter', '$http', '$log', function ($s
     $scope.lowerCaseHandle = function () {
         return $filter('lowercase')($scope.handle);
     };
-
+    $scope.test1 = "This is test1";
+    $log.log($scope);
     $scope.characters = 5;
     //Using $http service to fire request to server
     $http.get('/Home/GetRules')
@@ -53,8 +54,12 @@ myApp.controller('mainCtrl', ['$scope', '$filter', '$http', '$log', function ($s
 
 }]);
 
-myApp.controller('contactCtrl', function ($scope,$routeParams) {
+myApp.controller('contactCtrl', function ($scope, $routeParams, $log ,$rootScope) {
 
     $scope.contactDetails = "Twitter , 7th street ,New York";
     $scope.queryStringValue = $routeParams.num;
+    $scope.test2 = "This is test2";
+    $log.log($scope);
+    $log.log($rootScope);
+
 });
