@@ -524,6 +524,88 @@ options from the server and after the actual call is send to the server
 Note: Client cannot do anything in case of Cross issue and server needs to give permisssion 
       ie.Enable Cross 
 
+Custom Directives
+--------------------
+By default Angular provides us pre-Build directive ,BUT we can also create our custom directive
+Custom Directive are reusable components(User Controls) which can be used at multiple places
+
+app.directive("companyCopyRight", function () {
+    var directive = {
+        //We can restrict the directive using below values
+        restrict: "EA", //E=Element, A=Attribute , C=CssClass , M=Comments
+        template: "@CopyRight 2016-17 {{title}}"
+    };
+    return directive;
+});
+
+//Directive are useful in creating User Controls for our application
+app.directive("userControl", function () {
+    var directive = {
+        templateUrl: "DirectiveUserControl.html"
+    }
+    return directive;
+});
+
+Note: The scope of controller and directive are same(By default) and to make them different we 
+	  can do {}for ditaching there scopes , Or One-Way-Binding  where changes in Controller reflect changes in directive 
+	  but Not Vice-Versa or We can also create Two-Way-Binding if we want changes to be reflected
+
+Note:We can have nested directives also
+
+Directive ======= ( @ ) (One Way Binding) =======> Controller
+Directive ======= ( = ) (Tow Way Binding) =======> Controller
+Directive ======= ( & ) (attach controller Methods) =======> Controller
+
+app.directive("userControl", function () {
+    var directive = {
+        templateUrl: "DirectiveUserControl.html",
+        scope: {
+            previewData: "@" ,//One Way Binding
+            editFeild: "=",//Two Way Binding
+            anyMethod:"&" //To attach controller method to directives
+        }
+    }
+    return directive;
+});
+
+Compile & Link
+---------------
+In general terms => When building a code ,the compiler converts code to a lower-level language
+(Machine Language),then the linker generates a file the computer will actually 
+intreact with
+
+When compile runs it returns pre-Link and post-link as an javascript object 
+
+In Angular , When angular complies the directive then it uses pre-link and
+and finally when all the directives are complied then it runs post-Link
+Post-Link are safer compared to pre-Link coz we already know what content we 
+are dealing with ie.Everything in the directive is done and ready to go
+Angular Js Infact in its documentation tells to avoid pre-Link and recommends
+post-Link
+The use-case for post-Link is that we can change our directive conditionally as per
+the values and when this code cannot be done inside directive itself
+For instance , if we are getting the values from database and we need to make
+some changes to our HTML base on certain values
+
+Transclusion
+----------------
+In general terms ,Transclusion is including one document inside other 
+ie.Place a copy of one document at a pairticular point inside another.
+
+In Angular, Transclusion is simply taking a piece of HTML and point where to
+put in direcive and its another way to make our directive more useful
+
+
+
+
+
+Promises & Deffered
+------------
+Promises (WHAT) are the post processing logic that we want to run after a certain action
+is completed ,these are similar to promises in javascript
+
+Deffered (WHEN/HOW) decides how and when these logic should run
+
 
 
 

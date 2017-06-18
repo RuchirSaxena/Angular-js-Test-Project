@@ -6,11 +6,26 @@
 </head>
 <body ng-app="myCustomDirective">
     <div ng-controller="homeCtrl">
-        <h1>{{title}}</h1>
+        <h1>{{title}} Example</h1>
         <div company-copy-right></div>
         <user-Control></user-Control>
-
         <company-copy-right></company-copy-right>
+    </div>
+
+    <!--Understanding bindings of Directive-->
+    <div ng-controller="personCtrl">
+        <h1>Employee Information :</h1>
+        <span>Employee Name:{{person.name}}</span><br />
+        <span>Employee Company:{{person.company}}</span><br />
+        <span>Employee Position:{{person.position}}</span>
+        <hr />
+        <!--Using person Directive-->
+        <span>Isolated Scope</span><br />
+        <!--<person-Information></person-Information>-->
+        <hr />
+        <span>This is binding single property from parent controller</span><br />
+        <person-Information employee-name="{{person.name}}"></person-Information>
+
     </div>
 
    
