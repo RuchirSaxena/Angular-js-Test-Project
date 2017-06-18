@@ -334,6 +334,32 @@ Sevices can be created using
 	2.Factory Method
 	3.Providers
 
+Before understanding services we need to understand the concepts of 
+1.IOC(Inversion of Control) IOC is a principle which says the I as a object will perform my activites only 
+and I will not create an object (coz its not my responsibility) And will delegate this responsibilty to other
+So IOC is a princliple and it is implemented by DI implements IOC
+2.DI(Dependency Injection) Dependency Injection helps to inject dependent objects of a code ,it basically
+helps us to decouple system and create a decoupled architecture
+
+We have basically 2 types of classes in our system
+1.Domain Clasess (Business classes) =>Maps to real world object
+2.Utility classes(Infrastructure classes) =>Common code for our project
+
+Note:Global instance means single instance makes sense for utilty classes
+     BUT for domain objects we would need different instances
+
+
+Service Method
+-----------------
+Services are used to create utility objects in an application that can be shared across application
+ie.Basically its a singleton design pattern where only one instance of object exixts 
+
+Factory Method
+-------------------
+Factory is resposponisble for creating objects , in case of factory instances are not injected
+and a javascript object is passed to the controller
+
+
 //js Service Method 
 app.service('MyService',function(){
 
@@ -426,7 +452,78 @@ app.config(function (dateProvider) {
 
 
 
-Implementing CURD operation using Factory Service Method
+//Digest Cycle
+Q.Basically the question is how Angular is working and updating the expression
+Q.How model is going and updating the expression 
+So, basically the answer to the above questions is the updation is done through 
+the digest cycle , digest cycle is a loop which runs and upates the changes
+
+Q.When does digest cycle runs and how does digest cycle know which expressions to update
+A. So the first thing to understand is that digest cycle does not continously runs at the 
+back to update things , it runs when some kind of event that is send from the angular like
+onChange event, keypress event etc. 
+So mainly watchers which  are attached to the models and it goes to all the watchers and it updates
+the corresponding model is updated
+
+Model ====> $.apply() ====> $.digest()
+
+So, when event occurs $.apply() method is called and singnals out to start the digest
+cycle and then $.digest is loop which updates the watchers 
+
+More things to add is that , digest cycle does not run once but it runs twice(Minimum) or many times
+
+Running digest cycle twice is termed as dirty checking , dirty cheking is done to check if there are
+any left over changes needed to be updated 
+
+Full digest Cycle steps :
+
+Model ===event occurs===>$.apply() =====>$.digest() ====>all Watechers evaluted ====> Dom painting ====> Browser displays Updated
+
+Note:Before running the digest cycle angular compare the old Value with new value and if both
+the values are same then it does nothing
+
+Perfomance Implications 
+If there are too many watchers in our form the it may effect the performance of our application
+So, to solve the above issue we can take below measures...
+1.Remove Unnecessary watchers
+2.We can use one time watchers by using :: => {{::Datetime}}
+
+
+Handling Cross Issue in Angular
+-------------------------------------
+Problem :Basically the Cross issue occuers when the client Application(Angular Application) 
+and Server Application(Web API) and on different domains 
+Solution:We need to enable cross domain on server Application(Web API)
+
+For this Firstly we need to add coniguration to webConfig file of our project
+<httpProtocol>
+	<customHeaders>
+		<add name="Access-Control-Allow-Origin" value="*" />
+		<add name="Access-Control-Allow-Headers" value="Content-Type" />
+		<add name="Access-Control-Allow-Methods" value="GET,POST,PUT,DELETE,OPTIONS" />
+	</customHeaders>
+</httpProtocol>
+
+Secondly , in Global.asax we write below code in Application_BeginRequest() method
+
+Protected void Application_BeginRequest(){
+	if(Request.Headers.AllKeys.Contains("Origin") && Request.HttpMethod=="OPTIONS"){
+		Response.Flush();
+	}
+}
+
+
+
+In Cross domain call ,there is one more call is added called as preflight call and asks server
+what options are available on your server and server responds that I have enabled GET, PUT,POST etc.
+(which ever are meintioned in webconfig File ) so depending upon these options client sends the request(GET ,POST)
+to server , so in case of Cross there is an extra call to the server called as Pre-Flight call to get the
+options from the server and after the actual call is send to the server 
+
+
+Note: Client cannot do anything in case of Cross issue and server needs to give permisssion 
+      ie.Enable Cross 
+
 
 
 

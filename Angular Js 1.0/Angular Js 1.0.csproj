@@ -199,10 +199,13 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CustomDirectives.html" />
     <Content Include="Employee.html" />
     <Content Include="Pages_RountingEg\ContactUs.html" />
     <Content Include="Pages_RountingEg\Home.html" />
     <Content Include="Scripts\curdOperations.js" />
+    <Content Include="Scripts\customDirectives.js" />
+    <Content Include="Scripts\DirectiveUserControl.html" />
     <Content Include="Scripts\Services.js" />
     <Content Include="%24http_Service.html" />
     <Content Include="Content\bootstrap-theme.css" />
